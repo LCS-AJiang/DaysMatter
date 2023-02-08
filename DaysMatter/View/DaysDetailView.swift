@@ -16,79 +16,55 @@ struct DaysDetailView: View {
     // Describe the user interface
     var body: some View {
         
-        VStack(spacing: 20) {
+        VStack(spacing: 40) {
             
-            HStack {
-                
-                // Force horizontal width as big as possible
-                Spacer()
-                
-            }
             
             // Title name
             Text(daysToShow.title)
-                .font(Font.custom("Helvetica", size: 144.0, relativeTo: .largeTitle))
+                .font(Font.custom("Helvetica", size: 40.0, relativeTo: .largeTitle))
             
             Group {
                 
-                // Days
-                Text("Days")
-                    .font(.title2.smallCaps())
-                    .fontWeight(.bold)
-                
                 // day description
                 Text("\(daysToShow.days)")
+                    .font(Font.custom("Helvetica", size: 100.0))
                 
-                // Date
-                Text("Date")
-                    .font(.title2.smallCaps())
-                    .fontWeight(.bold)
-                
-                // Date description
-                Text(daysToShow.date)
-                
-                // Day of the week
-                Text("Day Of The Week")
-                    .font(.title2.smallCaps())
-                    .fontWeight(.bold)
-                
-                // Day of the week description
-                Text(daysToShow.dayOfTheWeek)
-                
+                HStack{
+                    // Date description
+                    Text(daysToShow.date)
+                        .font(Font.custom("Helvetica", size: 20.0))
+                    
+                    // Day of the week description
+                    Text(daysToShow.dayOfTheWeek)
+                        .font(Font.custom("Helvetica", size: 20.0))
+                }
             }
-            
-            // Push content up in the card
-            Spacer()
-            
         }
-        // Give all elements inside the VStack a bit of padding
-        .padding()
-        
-        // Background
-        .background(
-            
-            // "color"
-//            daysToShow.color
-        )
-        // Trim sharp edges of VStack box
-        .clipShape(
-            RoundedRectangle(cornerRadius: 25)
-        )
-        // Border
-        .overlay(
-            RoundedRectangle(cornerRadius: 25)
-                .stroke(Color.black, lineWidth: 5)
-        )
-        // Move in from edges
-        .padding()
-        // Nav title
-//        .navigationTitle(daysToShow.name )
-        
     }
-}
+    }
+    
+//            // Background
+//            Text("1")
 
-struct DaysDetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        DaysDetailView(daysToShow: list1)
+    //        // Trim sharp edges of VStack box
+    //        .clipShape(
+    //            RoundedRectangle(cornerRadius: 25)
+    //        )
+    //        // Border
+    //        .overlay(
+    //            RoundedRectangle(cornerRadius: 25)
+    //                .stroke(Color.black, lineWidth: 5)
+    //        )
+    //        // Move in from edges
+    //        .padding()
+    //        // Nav title
+    ////        .navigationTitle(daysToShow.name )
+    //
+    //    }
+    //}
+    
+    struct DaysDetailView_Previews: PreviewProvider {
+        static var previews: some View {
+            DaysDetailView(daysToShow: list1)
+        }
     }
-}
