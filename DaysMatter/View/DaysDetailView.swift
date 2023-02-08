@@ -16,55 +16,64 @@ struct DaysDetailView: View {
     // Describe the user interface
     var body: some View {
         
-        VStack(spacing: 40) {
+        ZStack {
+            // 1 - Background
+            // Image(string)
+            Image(daysToShow.background)
             
-            
-            // Title name
-            Text(daysToShow.title)
-                .font(Font.custom("Helvetica", size: 40.0, relativeTo: .largeTitle))
-            
-            Group {
+            // 2
+            VStack(spacing: 40) {
                 
-                // day description
-                Text("\(daysToShow.days)")
-                    .font(Font.custom("Helvetica", size: 100.0))
                 
-                HStack{
-                    // Date description
-                    Text(daysToShow.date)
-                        .font(Font.custom("Helvetica", size: 20.0))
+                // Title name
+                Text(daysToShow.title)
+                    .font(Font.custom("Helvetica", size: 40.0, relativeTo: .largeTitle))
+                
+                Group {
                     
-                    // Day of the week description
-                    Text(daysToShow.dayOfTheWeek)
-                        .font(Font.custom("Helvetica", size: 20.0))
+                    // day description
+                    Text("\(daysToShow.days)")
+                        .font(Font.custom("Helvetica", size: 100.0))
+                    
+                    HStack{
+                        // Date description
+                        Text(daysToShow.date)
+                            .font(Font.custom("Helvetica", size: 20.0))
+                        
+                        // Day of the week description
+                        Text(daysToShow.dayOfTheWeek)
+                            .font(Font.custom("Helvetica", size: 20.0))
+                    }
                 }
             }
+                    // Trim sharp edges of VStack box
+                    .clipShape(
+                        RoundedRectangle(cornerRadius: 25)
+                    )
         }
+        
+        
     }
-    }
-    
-//            // Background
-//            Text("1")
+}
 
-    //        // Trim sharp edges of VStack box
-    //        .clipShape(
-    //            RoundedRectangle(cornerRadius: 25)
-    //        )
-    //        // Border
-    //        .overlay(
-    //            RoundedRectangle(cornerRadius: 25)
-    //                .stroke(Color.black, lineWidth: 5)
-    //        )
-    //        // Move in from edges
-    //        .padding()
-    //        // Nav title
-    ////        .navigationTitle(daysToShow.name )
-    //
-    //    }
-    //}
-    
-    struct DaysDetailView_Previews: PreviewProvider {
-        static var previews: some View {
-            DaysDetailView(daysToShow: list1)
-        }
+
+
+
+//        // Border
+//        .overlay(
+//            RoundedRectangle(cornerRadius: 25)
+//                .stroke(Color.black, lineWidth: 5)
+//        )
+//        // Move in from edges
+//        .padding()
+//        // Nav title
+////        .navigationTitle(daysToShow.name )
+//
+//    }
+//}
+
+struct DaysDetailView_Previews: PreviewProvider {
+    static var previews: some View {
+        DaysDetailView(daysToShow: list1)
     }
+}
