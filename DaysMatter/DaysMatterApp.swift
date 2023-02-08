@@ -11,7 +11,7 @@ import SwiftUI
 struct DaysMatterApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            DaysDetailView(daysToShow: list2)
         }
     }
 }
