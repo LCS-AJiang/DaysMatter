@@ -15,65 +15,59 @@ struct DaysDetailView: View {
     // MARK: Computed property
     // Describe the user interface
     var body: some View {
-        
-        ZStack {
-            // 1 - Background
-            // Image(string)
-            Image(daysToShow.background)
-            
-            // 2
-            VStack(spacing: 40) {
-                
-                
-                // Title name
-                Text(daysToShow.title)
-                    .font(Font.custom("Helvetica", size: 40.0, relativeTo: .largeTitle))
-                
-                Group {
+        ZStack{
+            Color.black
+                .ignoresSafeArea(.all)
+            ZStack {
+                // 1 - Background
+                // Image(string)
+                Image(daysToShow.background)
+                    .resizable()
+                    .frame(width: 400, height: 420)
+                // 2
+                VStack(spacing: 40) {
                     
-                    // day description
-                    Text("\(daysToShow.days)")
-                        .font(Font.custom("Helvetica", size: 100.0))
                     
-                    HStack{
-                        // Date description
-                        Text(daysToShow.date)
-                            .font(Font.custom("Helvetica", size: 20.0))
+                    // Title name
+                    Text(daysToShow.title)
+                        .font(Font.custom("Helvetica", size: 40.0, relativeTo: .largeTitle))
+                    
+                    Group {
                         
-                        // Day of the week description
-                        Text(daysToShow.dayOfTheWeek)
-                            .font(Font.custom("Helvetica", size: 20.0))
+                        // day description
+                        Text("\(daysToShow.days)")
+                            .font(Font.custom("Helvetica", size: 100.0))
+                        
+                        HStack{
+                            // Date description
+                            Text(daysToShow.date)
+                                .font(Font.custom("Helvetica", size: 20.0))
+                            
+                            // Day of the week description
+                            Text(daysToShow.dayOfTheWeek)
+                                .font(Font.custom("Helvetica", size: 20.0))
+                        }
                     }
                 }
+                .foregroundColor(Color.white)
             }
-                    // Trim sharp edges of VStack box
-                    .clipShape(
-                        RoundedRectangle(cornerRadius: 25)
-                    )
+            .clipShape(
+                RoundedRectangle(cornerRadius: 15))
+            // Border
+            .overlay(
+                RoundedRectangle(cornerRadius: 15)
+                    .stroke(Color.white, lineWidth: 5)
+            )
+            
         }
-        
-        
     }
 }
 
 
-
-
-//        // Border
-//        .overlay(
-//            RoundedRectangle(cornerRadius: 25)
-//                .stroke(Color.black, lineWidth: 5)
-//        )
-//        // Move in from edges
-//        .padding()
-//        // Nav title
-////        .navigationTitle(daysToShow.name )
-//
-//    }
-//}
-
 struct DaysDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        DaysDetailView(daysToShow: list1)
+        NavigationView {
+            DaysDetailView(daysToShow: list1)
+        }
     }
 }

@@ -9,34 +9,33 @@ import SwiftUI
 
 struct ListView: View {
     var body: some View {
-        Text("List will go here")
-        //        List {
-        //
-        //            NavigationLink(destination: {
-        //                DaysMatter(daysToShow: list1)
-        //            }, label: {
-        //                Text("List 1")
-        //            })
-        //                NavigationLink(destination: {
-        //                    DaysMatter(daysToShow: list2)
-        //                }, label: {
-        //                    Text("List 2")
-        //                })
-        //                    NavigationLink(destination: {
-        //                        DaysMatter(daysToShow: list3)
-        //                    }, label: {
-        //                        Text("List 3")
-        //                    })
-        //
-        //                    }
-        //
-        //                }
-        ////                    .navigationTitle("Emoji Cards")
+        List {
+            
+            NavigationLink(destination: {
+                DaysDetailView(daysToShow: list1)
+            }, label: {
+                Text("List 1")
+            })
+            NavigationLink(destination: {
+                DaysDetailView(daysToShow: list2)
+            }, label: {
+                Text("List 2")
+            })
+            NavigationLink(destination: {
+                DaysDetailView(daysToShow: list3)
+            }, label: {
+                Text("List 3")
+            })
+            
+        }
+        
     }
 }
 
 struct ListView_Previews: PreviewProvider {
     static var previews: some View {
-        ListView()
+        NavigationView{
+            ListView()
+        }
     }
 }
