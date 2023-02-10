@@ -11,8 +11,19 @@ struct DaysDetailView: View {
     // MARK: Stored property
     // Information to show on the days detail
     let daysToShow: Days
+    @State var from: Date = Date()  // Sets to current date and time
+    @State var to: Date = Date()    // Sets to current date and time
     
     // MARK: Computed property
+    var differenceInDays: Int {
+        
+        guard let daysLeft = Calendar.current.dateComponents([.day], from: from, to: to).day
+        else {
+            return 0
+        }
+        
+        return daysLeft
+    }
     // Describe the user interface
     var body: some View {
         ZStack{
@@ -23,9 +34,9 @@ struct DaysDetailView: View {
                 // Image(string)
                 Image(daysToShow.background)
                     .resizable()
-                    .frame(width: 400, height: 420)
+                    .frame(width: 420, height: 440)
                 // 2
-                VStack(spacing: 40) {
+                VStack(spacing: 10) {
                     
                     
                     // Title name
@@ -34,34 +45,52 @@ struct DaysDetailView: View {
                     
                     Group {
                         
-                        // day description
-                        Text("\(daysToShow.days)")
-                            .font(Font.custom("Helvetica", size: 100.0))
                         
-                        HStack{
-                            // Date description
-                            Text(daysToShow.date)
-                                .font(Font.custom("Helvetica", size: 20.0))
+                        VStack{
+                            Text("\(differenceInDays)")
+                                .font(Font.custom("Helvetica", size: 100.0))
+                                .fontWeight(.black)
                             
-                            // Day of the week description
-                            Text(daysToShow.dayOfTheWeek)
-                                .font(Font.custom("Helvetica", size: 20.0))
+                            DatePicker(selection: .constant(Date()),displayedComponents: .date, label: {
+                                Text("From")
+                                    .foregroundColor(.black)
+                            })
+                            .background {
+                                Color.white
+                            }
+                            
+                            DatePicker(selection: .constant(Date()),displayedComponents: .date, label: {
+                                Text("To")
+                                    .foregroundColor(.black)
+                            })
+                            .background {
+                                Color.white
+                            }
                         }
+                        
                     }
+                    .padding()
+                    
+                    // Day of the week description
+                    Text(daysToShow.dayOfTheWeek)
+                        .font(Font.custom("Helvetica", size: 20.0))
                 }
-                .foregroundColor(Color.white)
             }
             .clipShape(
-                RoundedRectangle(cornerRadius: 15))
-            // Border
-            .overlay(
-                RoundedRectangle(cornerRadius: 15)
-                    .stroke(Color.white, lineWidth: 5)
+                    RoundedRectangle(cornerRadius: 30)
             )
-            
+                // Border
+                .overlay(
+                    RoundedRectangle(cornerRadius: 30)
+                        .stroke(Color.white, lineWidth: 15)
+                )
         }
+        .foregroundColor(Color.white)
     }
+    
+    
 }
+
 
 
 struct DaysDetailView_Previews: PreviewProvider {

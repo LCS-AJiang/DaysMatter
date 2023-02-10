@@ -28,6 +28,7 @@ struct ListView: View {
             })
             
         }
+        .navigationTitle("Days Until")
         
     }
 }
